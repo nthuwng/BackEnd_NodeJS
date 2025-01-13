@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 
-console.log(process.env)
 const app = express()
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
@@ -13,7 +12,7 @@ app.set('view engine', 'ejs');
 
 //khai bao route
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! vs Hoi dan IT & nodemon')
 })
 
 app.get('/abc', (req, res) => {
