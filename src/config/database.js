@@ -11,7 +11,7 @@ require('dotenv').config();
 //   });
 
 
-//createPool dùng để giới hạn số lượng kết nối tới database
+//createPool dùng để giới hạn số lượng kết nối tới database và nó nhanh hơn createConnection
   const connection = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
