@@ -8,6 +8,11 @@ const app = express();// app express
 const port = process.env.PORT || 8888; //port => hardcode . uat .prod
 const hostname = process.env.HOST_NAME;
 
+//config req.body
+app.use(express.json()); // Used to parse JSON bodies
+app.use(express.urlencoded({ extended: true }));//Parse URL-encoded bodies
+
+
 //config template engine
 configViewEngine(app);
 
@@ -21,6 +26,8 @@ app.use('/', webRoute);
 //       console.log("results= ",results); // results contains rows returned by server
 //     }
 //   );
+
+
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
