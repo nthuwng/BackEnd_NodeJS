@@ -32,10 +32,15 @@ const getCreateUser = (req, res) => {
   res.render("create.ejs");
 };
 
+const getUpdateUser = (req, res) => {
+  res.render("edit.ejs");
+};
+
 module.exports = {
   getHomePage,
   getABC,
   getHoiDanIT,
   postCreateUser,
   getCreateUser,
+  getUpdateUser,
 };
