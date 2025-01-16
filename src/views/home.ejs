@@ -8,13 +8,15 @@
 </head>
 <style>
     .table-container {
-        padding:15px 20px;
+        padding: 15px 20px;
     }
+
     .title {
         font-size: 25px;
         font-weight: 600;
         padding-bottom: 10px;
     }
+
     table {
         border-collapse: collapse;
         width: 100%;
@@ -39,7 +41,6 @@
     </div>
 
     <div class="table-container">
-        <%= JSON.stringify(listUsers)%>
         <div class="title">List Users</div>
         <table>
             <tr>
@@ -49,22 +50,53 @@
                 <th>City</th>
                 <th>Action</th>
             </tr>
-            <tr>
-                <td>Peter</td>
-                <td>Griffin</td>
-                <td>$100</td>
-                <td>$100</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Lois</td>
-                <td>Griffin</td>
-                <td>$150</td>
-                <td>$100</td>
-            </tr>
+
+
+            <!-- Dùng vòng lặp for kiểu truyền thống  -->
+            <!-- <% for (let i=0; i < listUsers.length; i++) { %>
+                <tr>
+                    <td>
+                        <%=listUsers[i].id %>
+                    </td>
+                    <td>
+                        <%=listUsers[i].email %>
+                    </td>
+                    <td>
+                        <%=listUsers[i].name %>
+                    </td>
+                    <td>
+                        <%=listUsers[i].city %>
+                    </td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <% } %> -->
+
+            <!-- Dùng forEach -->
+            <% listUsers.forEach(function(user) { %>
+                <tr>
+                    <td>
+                        <%=user.id %>
+                    </td>
+                    <td>
+                        <%=user.email %>
+                    </td>
+                    <td>
+                        <%=user.name %>
+                    </td>
+                    <td>
+                        <%=user.city %>
+                    </td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <% }); %>
+
+
         </table>
     </div>
 
