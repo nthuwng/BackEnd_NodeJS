@@ -11,4 +11,14 @@ const getUserById = async (userId) => {
   return user;
 };
 
-module.exports = { getALLUsers ,getUserById};
+const updateUserById = async(email, name, city,userId) => {
+
+  let [results, fields] = await connection.query(
+    `UPDATE Users
+    SET email = ?, name =?, city= ?
+    WHERE id = ?`,
+    [email, name, city, userId]
+  );
+}
+
+module.exports = { getALLUsers ,getUserById,updateUserById};
