@@ -6,19 +6,28 @@ const getALLUsers = async () => {
 };
 
 const getUserById = async (userId) => {
-  let [results, fields] = await connection.query(`select * from Users where id = ?`,[userId]);
+  let [results, fields] = await connection.query(
+    `select * from Users where id = ?`,
+    [userId]
+  );
   let user = results && results.length > 0 ? results[0] : {};
   return user;
 };
 
-const updateUserById = async(email, name, city,userId) => {
-
+const updateUserById = async (email, name, city, userId) => {
   let [results, fields] = await connection.query(
     `UPDATE Users
     SET email = ?, name =?, city= ?
     WHERE id = ?`,
     [email, name, city, userId]
   );
-}
+};
 
-module.exports = { getALLUsers ,getUserById,updateUserById};
+const deleteUserById = async (id) => {
+  let [results, fields] = await connection.query(
+    `delete from Users where id = ?`,
+    [id]
+  );
+};
+
+module.exports = { getALLUsers, getUserById, updateUserById, deleteUserById };
