@@ -3,7 +3,7 @@ const express = require("express"); //commonjs
 const configViewEngine = require("./config/viewEngine"); //commonjs
 const webRoute = require("./routes/web"); //commonjs
 const connection = require("./config/database"); //commonjs
-const mongoose = require("mongoose");
+const Kitten = require("./models/Kitten"); //commonjs
 
 const app = express(); // app express
 const port = process.env.PORT || 8888; //port => hardcode . uat .prod
@@ -19,10 +19,6 @@ configViewEngine(app);
 //khai báo route
 app.use("/", webRoute);
 
-const kittySchema = new mongoose.Schema({
-  name: String,
-});
-const Kitten = mongoose.model("Kitten", kittySchema);
 const cat = new Kitten({ name: "Hoi dan IT cat" });
 cat.save();
 
