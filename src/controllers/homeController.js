@@ -8,7 +8,7 @@ const {
 const User = require("../models/user");
 
 const getHomePage = async (req, res) => {
-  let results = [];
+  let results = await User.find({});
   return res.render("home.ejs", { listUsers: results });
 };
 
@@ -25,18 +25,12 @@ const postCreateUser = async (req, res) => {
   let name = req.body.myname;
   let city = req.body.city;
 
-  await User.create({ // .create và .save là giống nhau nhma .create là dùng trực tiếp còn .save là phải có new 
+  await User.create({
+    // .create và .save là giống nhau nhma .create là dùng trực tiếp còn .save là phải có new
     email: email,
     name: name,
     city: city,
   });
-
-  console.log("email = ", email, "name = ", name, "city = ", city);
-
-  // let [results, fields] = await connection.query(
-  //   `INSERT INTO Users (email, name, city)VALUES (?,?,?)`,
-  //   [email, name, city]
-  // );
   res.send("Create user success");
 };
 
