@@ -1,11 +1,11 @@
 const express = require("express");
 const routerAPI = express.Router();
-const { getUsersAPI } = require("../controllers/apiController");
+const {
+  getUsersAPI,
+  postCreateUserAPI,
+} = require("../controllers/apiController");
 
-routerAPI.get("/", (req, res) => {
-  res.send("Hello API");
-});
-
-routerAPI.get("/abc", getUsersAPI);
+routerAPI.get("/user", getUsersAPI);
+routerAPI.post("/user", postCreateUserAPI);
 
 module.exports = routerAPI;
