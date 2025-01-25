@@ -1,26 +1,21 @@
 const path = require("path"); //fs : file system
 
 const uploadSingleFile = async (fileObject) => {
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-
-  // save => public/images/upload
-  //remember to create the upload folder first
+  // save => public/images/upload (__dirname là đường dẫn tới project BackEnd_NodeJS)
   let uploadPath = path.resolve(__dirname, "../public/images/upload");
-  // console.log(">>> check fileObject: ", path.resolve(__dirname, "../public/images/upload"))
+  //   console.log(">>> check fileObject: ", path.resolve(__dirname, "../public/images/upload"))
 
-  // abc.png => abc-timestamp.png
-
-  //get image extension
+  //get image extension (lấy ra extension .png .jpg)
   let extName = path.extname(fileObject.name);
 
-  //get image's name (without extension)
+  //get image's name (without extension) (lấy ra tên gốc của ảnh)
   let baseName = path.basename(fileObject.name, extName);
 
   //create final path: eg: /upload/your-image.png
-  let finalName = `${baseName}-${Date.now()}${extName}`;
-  let finalPath = `${uploadPath}/${finalName}`;
+  let finalName = `${baseName}-${Date.now()}${extName}`; //( nối tên file với thời gian hiện tại)
+  let finalPath = `${uploadPath}/${finalName}`; //(nối đường dẫn cần lưu với tên file)
 
-  // console.log("final path: ", finalPath)
+  console.log("final path: ", extName);
 
   try {
     await fileObject.mv(finalPath);
@@ -42,18 +37,18 @@ const uploadSingleFile = async (fileObject) => {
 const uploadMultipleFiles = async (filesArr) => {
   try {
     let uploadPath = path.resolve(__dirname, "../public/images/upload");
-    let resultArr = [];
+    let resultArr = []; 
     let countSuccess = 0;
     for (let i = 0; i < filesArr.length; i++) {
-      //get image extension
+      //get image extension (lấy ra extension .png .jpg)
       let extName = path.extname(filesArr[i].name);
 
-      //get image's name (without extension)
+      //get image's name (without extension) (lấy ra tên gốc của ảnh)
       let baseName = path.basename(filesArr[i].name, extName);
 
       //create final path: eg: /upload/your-image.png
-      let finalName = `${baseName}-${Date.now()}${extName}`;
-      let finalPath = `${uploadPath}/${finalName}`;
+      let finalName = `${baseName}-${Date.now()}${extName}`; //( nối tên file với thời gian hiện tại)
+      let finalPath = `${uploadPath}/${finalName}`; //(nối đường dẫn cần lưu với tên file)
 
       try {
         await filesArr[i].mv(finalPath);
