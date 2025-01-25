@@ -12,7 +12,7 @@ const customerSchema = new mongoose.Schema(
     image: String,
     description: String,
   },
-  { timestamps: true }
+  { timestamps: true } //auto create created_at, updated_at
 );
 const Customer = mongoose.model("Customer", customerSchema);
 

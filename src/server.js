@@ -1,14 +1,17 @@
 require("dotenv").config();
-const express = require("express"); 
-const configViewEngine = require("./config/viewEngine"); 
-const webRoute = require("./routes/web"); 
-const apiRoute = require("./routes/api"); 
-
-const connection = require("./config/database"); 
+const express = require("express");
+const configViewEngine = require("./config/viewEngine");
+const webRoute = require("./routes/web");
+const apiRoute = require("./routes/api");
+const fileUpload = require("express-fileupload");
+const connection = require("./config/database");
 
 const app = express(); // app express
 const port = process.env.PORT || 8888; //port => hardcode . uat .prod
 const hostname = process.env.HOST_NAME;
+
+// cofig file upload
+app.use(fileUpload());
 
 //config req.body
 app.use(express.json()); // Used to parse JSON bodies
@@ -20,7 +23,6 @@ configViewEngine(app);
 //khai báo route
 app.use("/", webRoute);
 app.use("/v1/api/", apiRoute);
-
 
 (async () => {
   try {
