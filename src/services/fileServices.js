@@ -15,8 +15,6 @@ const uploadSingleFile = async (fileObject) => {
   let finalName = `${baseName}-${Date.now()}${extName}`; //( nối tên file với thời gian hiện tại)
   let finalPath = `${uploadPath}/${finalName}`; //(nối đường dẫn cần lưu với tên file)
 
-  console.log("final path: ", extName);
-
   try {
     await fileObject.mv(finalPath);
     return {
@@ -37,7 +35,7 @@ const uploadSingleFile = async (fileObject) => {
 const uploadMultipleFiles = async (filesArr) => {
   try {
     let uploadPath = path.resolve(__dirname, "../public/images/upload");
-    let resultArr = []; 
+    let resultArr = [];
     let countSuccess = 0;
     for (let i = 0; i < filesArr.length; i++) {
       //get image extension (lấy ra extension .png .jpg)
