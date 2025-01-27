@@ -13,7 +13,14 @@ const customerSchema = new mongoose.Schema(
     image: String,
     description: String,
   },
-  { timestamps: true } //auto create created_at, updated_at
+  {
+    timestamps: true,
+    // statics: {
+    //   findByHoidanIT(name) {
+    //     return this.find({ name: new RegExp(name, "i") });
+    //   },
+    // },
+  } //auto create created_at, updated_at
 );
 customerSchema.plugin(mongoose_delete, { overrideMethods: "all" });
 const Customer = mongoose.model("Customer", customerSchema);

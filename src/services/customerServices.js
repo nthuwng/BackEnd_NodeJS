@@ -52,7 +52,17 @@ const putUpdateCustomerServices = async (id, name, email, address) => {
 
 const deleteACustomerServices = async (id) => {
   try {
-    let result = await Customer.deleteById(id); //soft delete nó dùng để ẩn đi chứ không phải xóa thật sự 
+    let result = await Customer.deleteById(id); //soft delete nó dùng để ẩn đi chứ không phải xóa thật sự
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+const deleteArrayCustomerServices = async (ids) => {
+  try {
+    let result = await Customer.delete({ _id: { $in: ids } }); //soft delete nó dùng để ẩn đi chứ không phải xóa thật sự
     return result;
   } catch (error) {
     console.log(error);
@@ -65,4 +75,5 @@ module.exports = {
   getAllCustomersServices,
   putUpdateCustomerServices,
   deleteACustomerServices,
+  deleteArrayCustomerServices,
 };

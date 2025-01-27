@@ -5,6 +5,7 @@ const {
   getAllCustomersServices,
   putUpdateCustomerServices,
   deleteACustomerServices,
+  deleteArrayCustomerServices,
 } = require("../services/CustomerServices");
 
 module.exports = {
@@ -71,6 +72,16 @@ module.exports = {
   deleteACustomer: async (req, res) => {
     let id = req.body.id;
     let result = await deleteACustomerServices(id);
+
+    return res.status(200).json({
+      errorCode: 0,
+      data: result,
+    });
+  },
+  deleteArrayCustomer: async (req, res) => {
+    let ids = req.body.customersid;
+
+    let result = await deleteArrayCustomerServices(ids);
 
     return res.status(200).json({
       errorCode: 0,
