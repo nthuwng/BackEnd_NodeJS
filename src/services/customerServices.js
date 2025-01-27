@@ -27,7 +27,18 @@ const createArrayCustomerServices = async (arr) => {
   }
 };
 
+const getAllCustomersServices = async () => {
+  try {
+    let result = await Customer.find({}); // vì không có điều kiện gì nên trong hàm find truyền vào object rỗng
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
 module.exports = {
   createCustomerServices,
   createArrayCustomerServices,
+  getAllCustomersServices,
 };
