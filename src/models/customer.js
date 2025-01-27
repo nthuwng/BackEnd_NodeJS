@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var mongoose_delete = require("mongoose-delete");
 
 const customerSchema = new mongoose.Schema(
   {
@@ -14,6 +15,7 @@ const customerSchema = new mongoose.Schema(
   },
   { timestamps: true } //auto create created_at, updated_at
 );
+customerSchema.plugin(mongoose_delete);
 const Customer = mongoose.model("Customer", customerSchema);
 
 module.exports = Customer;
