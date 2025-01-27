@@ -15,7 +15,7 @@ const customerSchema = new mongoose.Schema(
   },
   { timestamps: true } //auto create created_at, updated_at
 );
-customerSchema.plugin(mongoose_delete);
+customerSchema.plugin(mongoose_delete, { overrideMethods: "all" });
 const Customer = mongoose.model("Customer", customerSchema);
 
 module.exports = Customer;
