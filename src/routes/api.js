@@ -32,12 +32,18 @@ routerAPI.put("/customers", putUpdateCustomer);
 routerAPI.delete("/customers", deleteACustomer);
 routerAPI.delete("/customers-many", deleteArrayCustomer);
 
-routerAPI.get("/info" , (req, res) => {
-  
+routerAPI.get("/info", (req, res) => {
+  console.log(req.query);
   return res.status(200).json({
     data: req.query,
   });
 });
 
+routerAPI.get("/info/:name/:city", (req, res) => {
+  console.log(req.params);
+  return res.status(200).json({
+    data: req.params, //dùng params hạn chế hơn query vì query không cần định nghĩa thêm route
+  });
+});
 
 module.exports = routerAPI;
