@@ -1,5 +1,5 @@
 const Customer = require("../models/customer");
-
+const aqp = require("api-query-params");
 const createCustomerServices = async (customerData) => {
   try {
     let result = await Customer.create({
@@ -27,15 +27,15 @@ const createArrayCustomerServices = async (arr) => {
   }
 };
 
-const getAllCustomersServices = async (limit, page, name) => {
+const getAllCustomersServices = async (limit, page, name, queryString) => {
   try {
     let result = null;
     if (limit && page) {
       let offset = (page - 1) * limit;
-      result = await Customer.find({ name: { $regex: ".*" + name + ".*" } })
-        .skip(offset)
-        .limit(limit)
-        .exec();
+
+      const { filter } = aqp(queryString);
+      delete filter.page;
+      result = await Customer.find(filter).skip(offset).limit(limit).exec();
     } else {
       result = await Customer.find({}); // vì không có điều kiện gì nên trong hàm find truyền vào object rỗng
     }

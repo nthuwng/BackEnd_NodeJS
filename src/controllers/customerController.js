@@ -56,7 +56,7 @@ module.exports = {
 
     let result = null;
     if (limit && page) {
-      result = await getAllCustomersServices(limit, page,name);
+      result = await getAllCustomersServices(limit, page,name,req.query);
     } else {
       result = await getAllCustomersServices();
     }
