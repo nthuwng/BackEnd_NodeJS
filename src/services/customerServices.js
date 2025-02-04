@@ -27,9 +27,15 @@ const createArrayCustomerServices = async (arr) => {
   }
 };
 
-const getAllCustomersServices = async () => {
+const getAllCustomersServices = async (limit, page) => {
   try {
-    let result = await Customer.find({}); // vì không có điều kiện gì nên trong hàm find truyền vào object rỗng
+    let result = null;
+    if (limit && page) {
+      let offset = (page - 1) * limit;
+      result = await Customer.find({}).skip(offset).limit(limit).exec();
+    } else {
+      result = await Customer.find({}); // vì không có điều kiện gì nên trong hàm find truyền vào object rỗng
+    }
     return result;
   } catch (error) {
     console.log(error);
