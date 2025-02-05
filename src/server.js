@@ -35,12 +35,13 @@ app.use("/v1/api/", apiRoute);
     // Database Name
     const dbName = process.env.DB_NAME;
 
-      // Use connect method to connect to the server
-      await client.connect();
-      console.log("Connected successfully to server");
-      
-      const db = client.db(dbName);
-      const collection = db.collection("documents");
+    // Use connect method to connect to the server
+    await client.connect();
+    console.log("Connected successfully to server");
+
+    const db = client.db(dbName);
+    const collection = db.collection("customers");
+    console.log("=>> ",await collection.findOne({name:"customer 1"}));
 
     //
     app.listen(port, hostname, () => {
