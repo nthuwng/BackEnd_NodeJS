@@ -9,7 +9,7 @@ const connection = require("./config/database");
 const app = express(); // app express
 const port = process.env.PORT || 8888; //port => hardcode . uat .prod
 const hostname = process.env.HOST_NAME;
-
+const { MongoClient } = require("mongodb");
 // cofig file upload
 app.use(fileUpload());
 
@@ -26,7 +26,23 @@ app.use("/v1/api/", apiRoute);
 
 (async () => {
   try {
-    await connection();
+    // await connection();
+
+    //using mondodb driver
+    const url = process.env.DB_HOST_WITH_DRIVER;
+    const client = new MongoClient(url);
+
+    // Database Name
+    const dbName = process.env.DB_NAME;
+
+      // Use connect method to connect to the server
+      await client.connect();
+      console.log("Connected successfully to server");
+      
+      const db = client.db(dbName);
+      const collection = db.collection("documents");
+
+    //
     app.listen(port, hostname, () => {
       console.log(`Backend zero app listening on port ${port}`);
     });
