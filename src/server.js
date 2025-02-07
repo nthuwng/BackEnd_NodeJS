@@ -26,7 +26,7 @@ app.use("/v1/api/", apiRoute);
 
 (async () => {
   try {
-    // await connection();
+    await connection();
 
     //using mondodb driver
     const url = process.env.DB_HOST_WITH_DRIVER;

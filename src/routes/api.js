@@ -17,6 +17,8 @@ const {
   deleteArrayCustomer,
 } = require("../controllers/customerController");
 
+const {postCreateProject} = require("../controllers/projectController");
+
 routerAPI.get("/user", getUsersAPI);
 routerAPI.post("/user", postCreateUserAPI);
 routerAPI.put("/user", putUpdateUserAPI);
@@ -45,5 +47,9 @@ routerAPI.get("/info/:name/:city", (req, res) => {
     data: req.params, //dùng params hạn chế hơn query vì query không cần định nghĩa thêm route
   });
 });
+
+
+//PROJECT
+routerAPI.post("/project", postCreateProject);
 
 module.exports = routerAPI;
