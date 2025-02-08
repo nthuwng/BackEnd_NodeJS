@@ -40,10 +40,12 @@ module.exports = {
     const page = queryString.page;
 
     const { filter, limit, population } = aqp(queryString);
+    // console.log(population);
     delete filter.page;
 
     let offset = (page - 1) * limit;
     let result = await Project.find(filter)
+      .populate(population)
       .populate(population)
       .skip(offset)
       .limit(limit)
