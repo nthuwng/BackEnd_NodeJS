@@ -13,7 +13,7 @@ module.exports = {
   postCreateCustomer: async (req, res) => {
     let { name, address, phone, email, description } = req.body;
 
-    //Joi dùng để validate dữ liệu
+    //Joi dùng để validate dữ liệuu
     const schema = Joi.object({
       name: Joi.string().alphanum().min(3).max(30).required(),
       address: Joi.string(),
