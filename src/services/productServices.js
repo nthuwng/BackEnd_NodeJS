@@ -24,6 +24,15 @@ module.exports = {
       let newResult = await myProject.save();
       return newResult;
     }
+    if (data.type === "ADD-TASK") {
+      let myProject = await Project.findById(data.projectId).exec();
+      for (let i = 0; i < data.taskArr.length; i++) {
+        myProject.tasks.push(data.taskArr[i]); //pull dùng để xóa phần tử trong mảng
+      }
+      let newResult = await myProject.save();
+      return newResult;
+    }
+
     return null;
   },
 
