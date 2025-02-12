@@ -8,7 +8,10 @@ const connection = require("./config/database");
 
 const app = express(); // app express
 const port = process.env.PORT || 10000; //port => hardcode . uat .prod
-const hostname = process.env.HOST_NAME;
+
+const hostname = "0.0.0.0"; //dùng trên render và lấy port từ atlas mongodb
+// const hostname = process.env.HOST_NAME;
+
 const { MongoClient } = require("mongodb");
 // cofig file upload
 app.use(fileUpload());
