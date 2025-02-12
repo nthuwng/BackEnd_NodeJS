@@ -6,7 +6,7 @@ const {
   putUpdateCustomerServices,
   deleteACustomerServices,
   deleteArrayCustomerServices,
-} = require("../services/CustomerServices");
+} = require("../services/customerServices");
 const Joi = require("joi");
 
 module.exports = {
